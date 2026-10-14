@@ -33,6 +33,10 @@ const SITE_DATA = {
   ticketUrl: "https://sos.lcboe.net",
   ticketLabel: "Submit a Web Ticket",
 
+  // The button next to it that opens the training site (new tab)
+  learnUrl: "https://learn.lcboetech.net",
+  learnLabel: "Learn Tech",
+
   // ============ UPDATES (newest first) ============
   updates: [
     {
@@ -195,6 +199,7 @@ header{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.92);backdro
 .btn{display:inline-block;text-decoration:none;font-weight:700;padding:12px 22px;border-radius:10px;font-size:.95rem;transition:transform .12s ease}
 .btn:hover{transform:translateY(-2px)}
 .btn-yellow{background:var(--yellow);color:#2b2b2b}
+.btn-blue{background:var(--blue);color:#fff}
 .btn-ghost{background:rgba(255,255,255,.14);color:#fff;border:1px solid rgba(255,255,255,.35)}
 
 /* layout */
@@ -236,6 +241,7 @@ section{padding-top:56px}
 .help{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:34px 26px;text-align:center}
 .help h2{font-size:1.4rem;font-weight:800}
 .help p{color:var(--muted);max-width:520px;margin:8px auto 20px}
+.help .actions{display:flex;gap:12px;flex-wrap:wrap;justify-content:center}
 
 footer{border-top:1px solid var(--line);background:var(--card);padding:22px 20px;text-align:center;color:var(--muted);font-size:.85rem}
 @media (max-width:640px){.nav nav a:not(.cta){display:none}}
@@ -263,6 +269,7 @@ footer{border-top:1px solid var(--line);background:var(--card);padding:22px 20px
     <div class="actions">
       <a class="btn btn-yellow" href="#updates">See What's New</a>
       <a class="btn btn-ghost" id="heroTicket" href="#">Submit a Web Ticket</a>
+      <a class="btn btn-ghost" id="heroLearn" href="#" target="_blank" rel="noopener">Learn Tech</a>
     </div>
   </div>
 </div>
@@ -285,7 +292,10 @@ footer{border-top:1px solid var(--line);background:var(--card);padding:22px 20px
     <div class="help">
       <h2>Need a hand?</h2>
       <p>A web ticket is always the best way to make sure you're on our list. We're happy to help!</p>
-      <a class="btn btn-yellow" id="helpTicket" href="#">Submit a Web Ticket</a>
+      <div class="actions">
+        <a class="btn btn-yellow" id="helpTicket" href="#">Submit a Web Ticket</a>
+        <a class="btn btn-blue" id="helpLearn" href="#" target="_blank" rel="noopener">Learn Tech</a>
+      </div>
     </div>
   </section>
 </main>
@@ -307,6 +317,10 @@ footer{border-top:1px solid var(--line);background:var(--card);padding:22px 20px
   ["heroTicket","helpTicket"].forEach(id=>{
     const el = document.getElementById(id);
     el.href = d.ticketUrl; el.textContent = d.ticketLabel;
+  });
+  ["heroLearn","helpLearn"].forEach(id=>{
+    const el = document.getElementById(id);
+    el.href = d.learnUrl; el.textContent = d.learnLabel;
   });
   document.getElementById("footer").innerHTML = "&copy; " + new Date().getFullYear() + " " + esc(d.district) + " Technology Department";
 
