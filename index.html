@@ -19,9 +19,7 @@
        themselves automatically from whatever tags you use).
      - Links: put the real URL in "link" and button text in "linkText",
        or delete those two lines for no button.
-  3. To add a video: copy a block in "videos" and paste your YouTube or
-     Google Drive EMBED url (YouTube: share > embed > copy the src url).
-  4. Save the file and re-upload/publish it. That's it.
+  3. Save the file and re-upload/publish it. That's it.
 ================================================================================
 -->
 <script>
@@ -151,21 +149,6 @@ const SITE_DATA = {
       status: "Live",
       body: "Reset your own password anytime through Clever — no ticket required."
     }
-  ],
-
-  // ============ VIDEO HUB ============
-  // Paste embed URLs when ready, e.g. "https://www.youtube.com/embed/VIDEO_ID"
-  videos: [
-    {
-      title: "Getting started with Gmail",
-      embedUrl: "",          // empty = shows a "coming soon" card
-      description: "Logging in, the waffle menu, and your first week in Google Workspace."
-    },
-    {
-      title: "Using the new copiers",
-      embedUrl: "",
-      description: "PIN login, Follow_Me printing, and choosing mono vs. color."
-    }
   ]
 };
 </script>
@@ -249,15 +232,6 @@ section{padding-top:56px}
 .proj .status{display:inline-block;margin:8px 0 6px;font-size:.72rem;font-weight:800;letter-spacing:.5px;text-transform:uppercase;color:var(--green)}
 .proj p{font-size:.9rem;color:#444}
 
-/* videos */
-.vid-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:18px}
-.vid{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden}
-.vid .frame{aspect-ratio:16/9;background:#0f2c47;display:flex;align-items:center;justify-content:center;color:#9fb8ce;font-size:.9rem;font-weight:600}
-.vid iframe{width:100%;height:100%;border:0}
-.vid .body{padding:14px 16px}
-.vid h3{font-size:1rem}
-.vid p{font-size:.88rem;color:var(--muted)}
-
 /* help */
 .help{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:34px 26px;text-align:center}
 .help h2{font-size:1.4rem;font-weight:800}
@@ -276,7 +250,6 @@ footer{border-top:1px solid var(--line);background:var(--card);padding:22px 20px
     <nav>
       <a href="#updates">Updates</a>
       <a href="#projects">Projects</a>
-      <a href="#videos">Videos</a>
       <a href="#help" class="cta" id="navTicket">Get Help</a>
     </nav>
   </div>
@@ -306,12 +279,6 @@ footer{border-top:1px solid var(--line);background:var(--card);padding:22px 20px
     <div class="section-head"><span class="bar"></span><h2>Project Spotlight</h2></div>
     <p class="section-sub">What the tech team is working on across the district.</p>
     <div class="proj-grid" id="projGrid"></div>
-  </section>
-
-  <section id="videos">
-    <div class="section-head"><span class="bar"></span><h2>Video Tutorials</h2></div>
-    <p class="section-sub">Short how-tos you can watch anytime. More coming soon!</p>
-    <div class="vid-grid" id="vidGrid"></div>
   </section>
 
   <section id="help">
@@ -379,17 +346,6 @@ footer{border-top:1px solid var(--line);background:var(--card);padding:22px 20px
     el.className = "proj";
     el.innerHTML = '<h3>'+esc(p.name)+'</h3><span class="status">'+esc(p.status)+'</span><p>'+esc(p.body)+'</p>';
     pg.appendChild(el);
-  });
-
-  // videos
-  const vg = document.getElementById("vidGrid");
-  d.videos.forEach(v=>{
-    const el = document.createElement("div");
-    el.className = "vid";
-    el.innerHTML =
-      '<div class="frame">'+(v.embedUrl ? '<iframe src="'+v.embedUrl+'" allowfullscreen loading="lazy"></iframe>' : '&#9654;&#xFE0E;&nbsp; Video coming soon')+'</div>'+
-      '<div class="body"><h3>'+esc(v.title)+'</h3><p>'+esc(v.description)+'</p></div>';
-    vg.appendChild(el);
   });
 
   // ---- animated particle network in the hero (decorative only) ----
